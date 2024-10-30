@@ -3,14 +3,36 @@
 
 
 class TTTBoard:
+    def __init__(self):
+        self.board = ['*'] * 9
     """A tic tac toe board
 
     Attributes:
         board - a list of '*'s, 'X's & 'O's. 'X's represent moves by player 'X', 'O's
             represent moves by player 'O' and '*'s are spots no one has yet played on
     """
+    def __str__(self):
+        ans = ''
+        for i in range(3, 10, 3):
+            ans += self.board[i-3:i] + "/n"
+        return ans
+    def game_over(self):
+        return '*' not in self.board or self.has_won('X') or self.has_won('O')
+    def has_won(self, player):
+        #horizontal
+        for i in range(3, 9, 3):
+            if self.board[i-3:i] == [player] * 3: return True
+        #vertical
+        for i in range(0, 3):
+            if self.board[i::3] == [player] * 3: return True
+        #diagnol
+        if [self.board[0], self.board[4], self.board[8]] == [player] * 3 or [self.board[2], self.board[4], self.board[6]] == [player] * 3: return True
 
-    pass
+        return False
+    def make_move(self, player, location):
+        self.board[location] = player
+    def clear(self):
+        self.board = ['*'] * 9
 
 
 def play_tic_tac_toe() -> None:
@@ -89,4 +111,4 @@ if __name__ == "__main__":
     print("All tests passed!")
 
     # uncomment to play!
-    # play_tic_tac_toe()
+play_tic_tac_toe()
