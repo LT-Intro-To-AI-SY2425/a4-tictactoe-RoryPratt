@@ -31,6 +31,7 @@ class TTTBoard:
         return False
     def make_move(self, player, location):
         self.board[location] = player
+        return True
     def clear(self):
         self.board = ['*'] * 9
 
