@@ -14,7 +14,7 @@ class TTTBoard:
     def __str__(self):
         ans = ''
         for i in range(3, 10, 3):
-            ans += self.board[i-3:i] + "/n"
+            ans += str(self.board[i-3:i]) + "\n"
         return ans
     def game_over(self):
         return '*' not in self.board or self.has_won('X') or self.has_won('O')
