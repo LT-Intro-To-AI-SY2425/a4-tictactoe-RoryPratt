@@ -30,6 +30,8 @@ class TTTBoard:
 
         return False
     def make_move(self, player, location):
+        if location < 0 or location > 8: return False
+        if self.board[location] != '*': return False
         self.board[location] = player
         return True
     def clear(self):
@@ -62,12 +64,7 @@ def play_tic_tac_toe() -> None:
         print(brd)
         move: str = input(f"Player {players[turn]} what is your move? ")
 
-        if not is_int(move):
-            raise ValueError(
-                f"Given invalid position {move}, position must be integer between 0 and 8 inclusive"
-            )
-
-        if brd.make_move(players[turn], int(move)):
+        if is_int(move) and brd.make_move(players[turn], int(move)):
             turn = not turn
 
     print(f"\nGame over!\n\n{brd}")
