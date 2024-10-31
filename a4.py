@@ -21,10 +21,10 @@ class TTTBoard:
     def has_won(self, player):
         #horizontal
         for i in range(3, 9, 3):
-            if self.board[i-3:i] == [player] * 3: return True
+            if self.board[i-3:i] == 3 * [player]: return True
         #vertical
         for i in range(0, 3):
-            if self.board[i::3] == [player] * 3: return True
+            if self.board[i::3] == 3 * [player]: return True
         #diagnol
         if [self.board[0], self.board[4], self.board[8]] == [player] * 3 or [self.board[2], self.board[4], self.board[6]] == [player] * 3: return True
 
@@ -66,6 +66,7 @@ def play_tic_tac_toe() -> None:
 
         if is_int(move) and brd.make_move(players[turn], int(move)):
             turn = not turn
+        else: print("Not Valid Index")
 
     print(f"\nGame over!\n\n{brd}")
     if brd.has_won(players[0]):
